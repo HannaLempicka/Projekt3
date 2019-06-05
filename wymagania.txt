@@ -1,0 +1,6 @@
+
+#wybrać plik
+#wczytać dane
+#obliczyć rzeczy + wyświetlić rzeczy
+#narysować wykres
+#zaznaczyć na mapie

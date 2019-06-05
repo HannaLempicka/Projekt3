@@ -3,9 +3,6 @@
   <trk>
     <trkseg>
       <trkpt lat="50.729065" lon="15.611092">
-        <time>2016-08-13T06:48:27Z</time>
-      </trkpt>
-      <trkpt lat="50.729065" lon="15.611092">
         <ele>803.765</ele>
         <time>2016-08-13T06:48:28Z</time>
       </trkpt>
@@ -1758,11 +1755,13 @@
         <time>2016-08-13T09:56:27Z</time>
       </trkpt>
       <trkpt lat="50.734283" lon="15.696901">
+		<ele>1442.99</ele>
         <time>2016-08-13T09:59:11Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.734283" lon="15.696901">
+		<ele>1442.99</ele>
         <time>2016-08-13T10:43:31Z</time>
       </trkpt>
       <trkpt lat="50.741156" lon="15.702633">
@@ -2634,11 +2633,13 @@
         <time>2016-08-13T12:01:23Z</time>
       </trkpt>
       <trkpt lat="50.736328" lon="15.739654">
+	    <ele>1623.15</ele>
         <time>2016-08-13T12:01:34Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.736328" lon="15.739654">
+	    <ele>1623.15</ele>
         <time>2016-08-13T12:09:06Z</time>
       </trkpt>
       <trkpt lat="50.736483" lon="15.739443">
@@ -3067,14 +3068,12 @@
       </trkpt>
       <trkpt lat="50.739138" lon="15.729131">
         <ele>1430.67</ele>
-        <time>2016-08-13T12:35:49Z</time>
-      </trkpt>
-      <trkpt lat="50.739138" lon="15.729131">
-        <time>2016-08-13T12:39:21Z</time>
+        <time>2016-08-13T12:39:49Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.739138" lon="15.729131">
+	    <ele>1430.67</ele>
         <time>2016-08-13T13:47:39Z</time>
       </trkpt>
       <trkpt lat="50.739323" lon="15.729074">
@@ -6164,14 +6163,6 @@
       <trkpt lat="50.72532" lon="15.605584">
         <ele>758.074</ele>
         <time>2016-08-13T17:12:49Z</time>
-      </trkpt>
-      <trkpt lat="50.72532" lon="15.605584">
-        <time>2016-08-13T17:13:18Z</time>
-      </trkpt>
-    </trkseg>
-    <trkseg>
-      <trkpt lat="50.72532" lon="15.605584">
-        <time>2016-08-13T17:13:20Z</time>
       </trkpt>
     </trkseg>
   </trk>

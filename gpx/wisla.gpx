@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"><trk>
 <trkseg>
-<trkpt lat="52.3606" lon="20.89725"></trkpt>
+<trkpt lat="52.3606" lon="20.89725"><ele>78</ele></trkpt>
 <trkpt lat="52.36063" lon="20.89721"><ele>78</ele></trkpt>
 <trkpt lat="52.36106" lon="20.89723"><ele>79</ele></trkpt>
 <trkpt lat="52.36431" lon="20.90009"><ele>80</ele></trkpt>
@@ -340,7 +340,6 @@
 <trkpt lat="52.13122" lon="21.12504"><ele>86</ele></trkpt>
 <trkpt lat="52.13165" lon="21.12781"><ele>86</ele></trkpt>
 <trkpt lat="52.13165" lon="21.12781"><ele>86</ele></trkpt>
-<trkpt lat="52.13165" lon="21.12781"></trkpt>
 </trkseg>
 </trk>
 </gpx>

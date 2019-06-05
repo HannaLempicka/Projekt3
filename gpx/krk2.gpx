@@ -3,9 +3,6 @@
     <trk>
     <trkseg>
       <trkpt lat="50.731154" lon="15.610297">
-        <time>2016-08-14T07:41:29Z</time>
-      </trkpt>
-      <trkpt lat="50.731154" lon="15.610297">
         <ele>929.755</ele>
         <time>2016-08-14T07:42:22Z</time>
       </trkpt>
@@ -1030,11 +1027,13 @@
         <time>2016-08-14T08:46:56Z</time>
       </trkpt>
       <trkpt lat="50.760411" lon="15.586871">
+		<ele>1094.54</ele>
         <time>2016-08-14T08:47:50Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.760411" lon="15.586871">
+		<ele>1094.54</ele>
         <time>2016-08-14T09:07:38Z</time>
       </trkpt>
       <trkpt lat="50.760457" lon="15.587074">
@@ -1382,11 +1381,13 @@
         <time>2016-08-14T09:35:56Z</time>
       </trkpt>
       <trkpt lat="50.77195" lon="15.575671">
+	    <ele>1282.69</ele>
         <time>2016-08-14T09:41:14Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.77195" lon="15.575671">
+		<ele>1282.69</ele>
         <time>2016-08-14T09:48:30Z</time>
       </trkpt>
       <trkpt lat="50.772061" lon="15.575543">
@@ -1622,12 +1623,14 @@
         <time>2016-08-14T10:05:33Z</time>
       </trkpt>
       <trkpt lat="50.778498" lon="15.582536">
+	    <ele>1388.56</ele>
         <time>2016-08-14T10:07:00Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.778498" lon="15.582536">
-        <time>2016-08-14T10:16:23Z</time>
+        <ele>1388.56</ele>
+		<time>2016-08-14T10:16:23Z</time>
       </trkpt>
       <trkpt lat="50.778514" lon="15.582533">
         <ele>1389.51</ele>
@@ -2134,12 +2137,14 @@
         <time>2016-08-14T11:12:17Z</time>
       </trkpt>
       <trkpt lat="50.778888" lon="15.557513">
+		<ele>1531.61</ele>
         <time>2016-08-14T11:17:09Z</time>
       </trkpt>
     </trkseg>
     <trkseg>
       <trkpt lat="50.778888" lon="15.557513">
-        <time>2016-08-14T12:48:08Z</time>
+        <ele>1531.61</ele>
+		<time>2016-08-14T12:48:08Z</time>
       </trkpt>
       <trkpt lat="50.770169" lon="15.545578">
         <ele>1339.93</ele>
@@ -4420,14 +4425,6 @@
       <trkpt lat="50.724975" lon="15.605723">
         <ele>919.555</ele>
         <time>2016-08-14T15:42:47Z</time>
-      </trkpt>
-      <trkpt lat="50.724975" lon="15.605723">
-        <time>2016-08-14T15:50:09Z</time>
-      </trkpt>
-    </trkseg>
-    <trkseg>
-      <trkpt lat="50.724975" lon="15.605723">
-        <time>2016-08-14T16:56:07Z</time>
       </trkpt>
     </trkseg>
   </trk>

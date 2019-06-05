@@ -1,0 +1,40 @@
+AddLocationForm:
+
+<AddLocationForm>:
+    orientation: "vertical"
+    search_lat: coor_lat
+    search_long: coor_long
+    my_map: map
+    
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+        
+        Label:
+            size_hint_x: 25
+            text: "Lat"
+        TextInput:
+            size_hint_x: 25
+            id: coor_lat
+        Label:
+            size_hint_x: 25
+            text: "Long"
+        TextInput:
+            size_hint_x: 25
+            id: coor_long
+			
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+        Button:
+            size_hint_x: 25
+            text: "Wyszukaj"
+            on_press: root.search_location()
+			
+    BoxLayout:
+        orientation: 'vertical'
+        MapView:
+            lat: 0
+            lon: 0
+            zoom: 1
+            id: map
