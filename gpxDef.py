@@ -142,7 +142,7 @@ def parametry (lon, lat, el, dates):
 		Vsr='brak'		
 	
 				
-	return distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s
+	return distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, dist, v
 
 	
 	
@@ -155,7 +155,7 @@ if __name__ == '__main__':
 	print('ilość dat= ', len(dates))
 	
 	
-	distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s= parametry (lon, lat, el, dates)
+	distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, dist, v= parametry (lon, lat, el, dates)
 
 	
 

@@ -20,10 +20,11 @@ class TrackForm(BoxLayout):
 	txt4 = ObjectProperty()
 	txt5 = ObjectProperty()
 	file=None
+	data_lay=None
 	
 	def __inir__(self, **kwargs):
 		super(TrackForm, self).__init__(**kwargs)
-		self.my_map.map_source = "thunderforest-outdoors"
+		self.my_map.map_source = "thunderforest-landscape"
 	
 	def open_file(self):
 		self.show_load()
@@ -36,11 +37,14 @@ class TrackForm(BoxLayout):
 			popup.open()
 			
 		else:
+			if self.data_lay != None:
+				self.my_map.remove_layer(self.data_lay)
+				
 			if self.file.endswith('.gpx'):
 				lon, lat, el, dates = g.czytanie(self.file)
 				self.draw_rout(lat, lon)
 				
-				distance, Vmean, dH, dHplus, dHminus, Hmax, Hmin, h, m, s = g.parametry (lon, lat, el, dates)
+				distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, dist, v = g.parametry (lon, lat, el, dates)
 				
 				self.txt1.text =str(distance)
 				self.txt1.text += '  [m]'
@@ -61,6 +65,8 @@ class TrackForm(BoxLayout):
 					
 					self.txt6.text =str(Hmin)
 					self.txt6.text += '  [m]'
+					
+					
 				
 				else:
 					self.txt2.text ='lack of date'
@@ -69,9 +75,9 @@ class TrackForm(BoxLayout):
 					self.txt5.text ='lack of date'
 					self.txt6.text ='lack of date'
 				
-				if Vmean != 'brak':
+				if Vsr != 'brak':
 				
-					self.txt7.text =str(Vmean)
+					self.txt7.text =str(Vsr)
 					self.txt7.text += '  [m/s]'
 					
 					self.txt8.text =str(h)
@@ -99,18 +105,18 @@ class TrackForm(BoxLayout):
 
 	
 	def draw_rout(self, lat, lon):
-		data_lay = MarkerMapLayer()
-		self.my_map.add_layer(data_lay)
+		self.data_lay = MarkerMapLayer()
+		self.my_map.add_layer(self.data_lay)
 		lat=lat[::10]
 		lon=lon[::10]
 		
 		for point in zip(lat, lon):
-			self.draw_marker(*point, layer=data_lay)
+			self.draw_marker(*point, layer=self.data_lay)
+		
 	
 	def draw_marker(self, lat, lon, layer=None):
 		markerSource='dot.png'
 		if lat != None and lon != None:
-		
 			marker=MapMarker(lat=lat, lon=lon, source=markerSource)
 			self.my_map.add_marker(marker, layer=layer)
 	
