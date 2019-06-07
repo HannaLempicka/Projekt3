@@ -1,6 +1,9 @@
+import gpxpy
+import datetime as dt
+import numpy as np	
+from math import pi, sin, cos, sqrt, atan, tan, radians
+
 def czytanie(plik):
-	import gpxpy
-	import datetime as dt
 	lat = []
 	lon = []
 	el = []
@@ -9,7 +12,7 @@ def czytanie(plik):
 	
 	with open (plik, 'r') as plikgpx:
 		gpx = gpxpy.parse(plikgpx)
-
+	
 		for track in gpx.tracks:
 			for seg in track.segments:
 				for point in seg.points:
@@ -28,7 +31,6 @@ def czytanie(plik):
 	return (lon, lat, el, dates)
 
 def Vincenty(fa,la,fb,lb):
-	from math import pi, sin, cos, sqrt, atan, tan, radians
 	fa=radians(fa)
 	la=radians(la)
 	fb=radians(fb)
@@ -100,26 +102,49 @@ def parametry (lon, lat, el, dates):
 				if time_delta.seconds == 0:
 					v.append(0)
 				else:
-					v.append(dist_part/time_delta.seconds) 							#średnia prękość między dwoma pkt
+					v.append(dist_part/time_delta.seconds) 							#średnia prękość między dwoma pkt [m/s]
+	
+	#to będzie zawsze 
+	distance=round(sum(dist),3)			#zwracamy długość trasy (pozioma)
+	
+	#jeśli będą elewacje
+	if alt_dif != [0]:
+		dHplus=0
+		dHminus=0
+		for h in alt_dif:
+			if h >= 0:
+				dHplus = dHplus + h
+						
+			else:
+				dHminus = dHminus + h
 			
-			distance=round(sum(dist),3)
-			dH=round(sum(alt_dif),3)
-			sum_time=sum(time_dif)
-			h,m,s=d_m_s(sum_time)
-			
-			dHplus=0
-			dHminus=0
-			for h in alt_dif:
-				if h >= 0:
-					dHplus = dHplus + h
-					
-				else:
-					dHminus = dHminus + h
-					
-			dHplus=round(dHplus,3)
-			dHminus=abs(round(dHminus,3))
+		dHplus=round(dHplus,3) 				#zwracamy suma wejść 
+		dHminus=abs(round(dHminus,3))		#zwracamy suma zejść
+		dH=round(sum(alt_dif),3) 			#zwracamy całkowite przewyższenie
+		Hmax=max(el) 						#zrawcamy min wysokość
+		Hmin=min(el) 						#zwracamy max wysokość
+	else:
+		dHplus='brak' 			
+		dHminus='brak' 			
+		dH='brak' 				
+		Hmax='brak'				
+		Hmin='brak'
+	
+	
+	if time_dif != [0]: 	
+		timeH=sum(time_dif)/3600 #h
+		h,m,s=d_m_s(timeH)
+		Vsr=round(np.mean(v),1) 		
+	else:
+		h='brak'
+		m='brak'
+		s='brak'					
+		Vsr='brak'		
+	
 				
-	return(alt_dif, time_dif, dist, v, distance, dH, dHplus, dHminus, h, m, s)
+	return distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s
+
+	
 	
 if __name__ == '__main__':
 
@@ -130,8 +155,8 @@ if __name__ == '__main__':
 	print('ilość dat= ', len(dates))
 	
 	
-	alt_dif, time_dif, dist, v, distance, dH, dHplus, dHminus, h, m, s = parametry (lon, lat, el, dates)
-	print('ilość odległości= ', len(dist))
-	print('ilość różnic wysokości= ', len(alt_dif))
-	print('ilość różnic czasu= ', len(time_dif))
-	print(h,m,s)
+	distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s= parametry (lon, lat, el, dates)
+
+	
+
+
