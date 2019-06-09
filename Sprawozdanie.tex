@@ -1,0 +1,79 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{polski} 
+\usepackage[utf8]{inputenc}
+\usepackage[comma]{natbib}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,bm,amsfonts,amssymb}
+\usepackage{wasysym}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg}
+\usepackage{float}           
+\usepackage{subfloat}          
+\usepackage{caption}             
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{multicol}   % \multicolumn{num_cols}{alignment}{contents}
+\usepackage{multirow}   % \multirow{''num_rows''}{''width''}{''contents''} {* for the width means the content's natural width}
+\usepackage{booktabs}           % tabele (toprule/midrule/bottomrule)
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\newcommand{\logoGIK}{WGiK-znak.png}
+\newcommand{\authorName}{Hanna Łempicka  \\ grupa 2a, Numer Indeksu: 291360}
+
+\newcommand{\titeReport}{Niwelacja Satelitarna} % <<< insert short title in the food
+\newcommand{\titleLecture}{Geodezja Wyższa \\ sem. IV, ćwiczenia, rok akad. 2018-2019} % <<< insert title of presentation
+\newcommand{\kind}{report}
+\newcommand{\mymail}{\href{mail to:} {hania.lempicka@wp.pl}}
+\newcommand{\supervisor}{....}
+\newcommand{\gikweb}{\href{www.gik.pw.edu.pl}{www.gik.pw.edu.pl}}
+\newcommand{\institut}{Katedra Geodezji Wyższej i Astronomii}
+\newcommand{\faculty}{Wydział Geodezji i Kartografii}
+\newcommand{\university}{Politechnika Warszawska}
+\newcommand{\city}{Warszawa}
+\newcommand{\thisyear}{2019}
+%\date{}
+% PDF METADATA
+\pdfinfo
+{
+	/Title       (GIK PW)
+	/Creator     (TeX)
+	/Author      (Hanna Łempicka)
+}
+
+
+% ------------------------- POCZATEK DOKUMENTU -------------------
+\begin{document}
+	% -----------------------------------------------------------------------------------------
+	% ----------------------------  Title page
+	% -----------------------------------------------------------------------------------------
+	\begin{center} 
+		\rule{\textwidth}{.5pt} \\
+		\vspace{1.0cm}
+		\includegraphics[width=.4\paperwidth]{\logoGIK}
+		\vspace{0.5cm} \\
+		\Large \textsc{\titeReport}
+		\vspace{0.5cm} \\  
+		\large \textsc{\titleLecture}
+		\vspace{0.5cm}\\
+		\textsc{\authorName}  \\
+		\textsc{\faculty}, \textsc{\university}  \\ 
+		\city, \thisyear
+	\end{center} 
+	\rule{\textwidth}{1.5pt}
+	
+	% -----------------------------------------------------------------------------------------
+	% ----------------------------  Table of content
+	% -----------------------------------------------------------------------------------------
+	\tableofcontents 								% wyświetla spis treści
+	%\addcontentsline{to}{chapter}{Spis treści} 	% dodaje pozycję do spisu treści
+	%
+	%
+
+\newpage
+
+\end{document}

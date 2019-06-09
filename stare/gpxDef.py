@@ -77,13 +77,7 @@ def parametry (lon, lat, el, dates):
 	time_dif 	= [0]															# czas pomiędzy punktami
 	dist 		= [0]															# odległość między punktami
 	v 			= [0]
-	d 			= []
-	vd 			= []
-	degree 		= [0]
-	i = 1
-	v2=[]
-	deg=[]
-	S=[0]
+	
 	for index in range(len(lat)):												# index - od zera do długości listy z koordynatami
 		if index == 0:															# zaczynamy od drugiego elementu
 			pass
@@ -94,90 +88,61 @@ def parametry (lon, lat, el, dates):
 			#print('stop= ', stop)
 			dist_part = Vincenty(lat[start],lon[start],lat[stop],lon[stop])		#liczenie odległośći za pomocą Vincentego
 			#print('odleglosc= ', dist_part)
-			if dist_part != 0:
-				dist.append(dist_part)												#lista z odległościami
-				#print('dist= ', dist)
+			dist.append(dist_part)												#lista z odległościami
+			#print('dist= ', dist)
+			
+			if el != []:
+				alt_part = el[stop]-el[start]								#przeywyższenie z różnicy elewacji
+				alt_dif.append(alt_part)
+			
+			if dates != []:
+				time_delta = (dates[stop] - dates[start])						#czas między punktami
+				time_dif.append(time_delta.seconds)
 				
-				if el != []:
-					alt_part = el[stop]-el[start]								#przeywyższenie z różnicy elewacji
-					alt_dif.append(alt_part)
-				
-				if dates != []:
-					time_delta = (dates[stop] - dates[start])						#czas między punktami
-					time_dif.append(time_delta.seconds)
-					
-					
-					if time_delta.seconds == 0:
-						pass
-					else:
-						i = i + 1
-						vv=dist_part/time_delta.seconds							#średnia prękość między dwoma pkt [m/s]
-					
-					v.append(vv)
-					v2.append(vv)
-					if vv == min(v2):
-						k=i
-					if vv == max(v):
-						j=i
-				else: 
-					k=None
-					j=None
-				
-				S.append(sqrt(dist_part**2+alt_part**2))
-				degree=atan(alt_part/dist_part)
-				deg.append(degree)
-				
-				if degree == min(deg):
-					l=i
-				if degree == max(deg):
-					n=i
-					
-			#to będzie zawsze 
-	distance=round(sum(dist),3)			#zwracamy długość trasy (pozioma)
-			#jeśli będą elewacje
+				if time_delta.seconds == 0:
+					v.append(0)
+				else:
+					v.append(dist_part/time_delta.seconds) 							#średnia prękość między dwoma pkt [m/s]
 	
+	#to będzie zawsze 
+	distance=round(sum(dist),3)			#zwracamy długość trasy (pozioma)
+	
+	#jeśli będą elewacje
 	if alt_dif != [0]:
 		dHplus=0
 		dHminus=0
 		for h in alt_dif:
 			if h >= 0:
 				dHplus = dHplus + h
-								
+						
 			else:
 				dHminus = dHminus + h
-					
+			
 		dHplus=round(dHplus,3) 				#zwracamy suma wejść 
 		dHminus=abs(round(dHminus,3))		#zwracamy suma zejść
 		dH=round(sum(alt_dif),3) 			#zwracamy całkowite przewyższenie
 		Hmax=max(el) 						#zrawcamy min wysokość
 		Hmin=min(el) 						#zwracamy max wysokość
-				
-		d1=0
-		for x in dist:
-			d1 += x
-			d.append(d1)
-					
-		S=round(sum(S),3)		
 	else:
 		dHplus='brak' 			
 		dHminus='brak' 			
 		dH='brak' 				
 		Hmax='brak'				
 		Hmin='brak'
-			
-			
+	
+	
 	if time_dif != [0]: 	
 		timeH=sum(time_dif)/3600 #h
 		h,m,s=d_m_s(timeH)
-		Vsr=round(np.mean(v),1)
-				
+		Vsr=round(np.mean(v),1) 		
 	else:
 		h='brak'
 		m='brak'
 		s='brak'					
 		Vsr='brak'		
+	
 				
-	return distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, d, v, k ,j, l, n, S
+	return distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, dist, v
 
 	
 	
@@ -190,6 +155,8 @@ if __name__ == '__main__':
 	print('ilość dat= ', len(dates))
 	
 	
-	distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, d, v, k ,j, l, n, S= parametry (lon, lat, el, dates)
-	print(l)
-	print(m)
+	distance, Vsr, dH, dHplus, dHminus, Hmax, Hmin, h, m, s, alt_dif, dist, v= parametry (lon, lat, el, dates)
+
+	
+
+

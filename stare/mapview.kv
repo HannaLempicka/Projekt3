@@ -11,7 +11,6 @@ TrackForm:
 	txt6: textIn6
 	txt7: textIn7
 	txt8: textIn8
-	txt9: textIn9
 	plots: plots
 	
     BoxLayout:
@@ -25,6 +24,10 @@ TrackForm:
             size_hint_x: 25
             text: "Analyse file"
             on_press: root.analyse_file()
+		Button:
+            size_hint_x: 25
+            text: "Draw plot"
+            on_press: root.rysuj_wykres()
 
 	
 	BoxLayout:
@@ -32,8 +35,6 @@ TrackForm:
 		size_hint_y: None
 		Label:
             text: 'horizontal distance'
-		Label:
-            text: 'slant distance'
 		Label:
             text: 'elevation gain up'
 		Label:
@@ -46,11 +47,6 @@ TrackForm:
 		size_hint_y: None
 		TextInput:
 			id: textIn1
-			size_hint_x: 25
-			font_size: 14
-			disabled: 'not'
-		TextInput:
-			id: textIn9
 			size_hint_x: 25
 			font_size: 14
 			disabled: 'not'
@@ -81,7 +77,6 @@ TrackForm:
             text: 'Mean Speed'
 		Label:
             text: 'Practice Time'
-
 			
 	BoxLayout:
 		height: '30dp'
@@ -106,7 +101,6 @@ TrackForm:
 			size_hint_x: 25
 			font_size: 14
 			disabled: 'not'
-		
 
 			
     BoxLayout:
@@ -114,9 +108,9 @@ TrackForm:
         MapView:
             lat: 0
             lon: 0
-            zoom: 0.5
+            zoom: 1
             id: map
-
+			
 	BoxLayout:
 		orientation: 'vertical'
 		id: plots
