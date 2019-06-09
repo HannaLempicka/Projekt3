@@ -25,13 +25,12 @@
 \newcommand{\logoGIK}{WGiK-znak.png}
 \newcommand{\authorName}{Hanna Łempicka  \\ grupa 2a, Numer Indeksu: 291360}
 
-\newcommand{\titeReport}{Niwelacja Satelitarna} % <<< insert short title in the food
-\newcommand{\titleLecture}{Geodezja Wyższa \\ sem. IV, ćwiczenia, rok akad. 2018-2019} % <<< insert title of presentation
+\newcommand{\titeReport}{Projekt 3 - Kivy} % <<< insert short title in the food
+\newcommand{\titleLecture}{Informatyka geodezyjna \\ sem. IV, ćwiczenia, rok akad. 2018-2019} % <<< insert title of presentation
 \newcommand{\kind}{report}
 \newcommand{\mymail}{\href{mail to:} {hania.lempicka@wp.pl}}
 \newcommand{\supervisor}{....}
 \newcommand{\gikweb}{\href{www.gik.pw.edu.pl}{www.gik.pw.edu.pl}}
-\newcommand{\institut}{Katedra Geodezji Wyższej i Astronomii}
 \newcommand{\faculty}{Wydział Geodezji i Kartografii}
 \newcommand{\university}{Politechnika Warszawska}
 \newcommand{\city}{Warszawa}
@@ -75,5 +74,66 @@
 	%
 
 \newpage
+\section{Cel ćwiczenia}
+Zaprojektowanie aplikacji z wykorzystaniem frameworka Kivy, która będzie służyła do analizy ścieżek/tras zapisanych w formacje gpx. 
+
+\section{Opis tworzenia aplikacji}
+\subsection{Plik 'gpxDef.py'}
+W tym pliku tworzyłam funkcje, użwyane potem w mojej aplikacji:
+\begin{itemize}
+	\item Funkcja 'czytanie':
+	\\ Jej zmienną jest wczytywany plik. Wykorzystałam tu bibliotekę gpxpy do poprawnego odczytywania pliku typu gpx. Wyniki tej funckji są listy: lon (lista z długościami geograficznymi punktów), lat (lista z szerokościami geograficznymi punktów), el (lista z wysokościami puntów) oraz dates (lista z czasem na punkatch). Listy el i dates mogą być listami pustymi, gdy w wyjściowy plik nie zawiera danych na temat czasu i wysokości. 
+	\item Funkcja 'Vincenty' 
+	\\Zmiennymi tej funkcji są szerokości i długości geograficzne dwóch punktów. Pozwala ona na obliczenie odległości płaskiej między dwoma punktami.
+	\item Funkcja 'dms':
+	Jej zmienną jest godzina z jej częściami dziesiętnymi. Funkcja pozwala na zamienienie zmiennej na trzy czyli godziny, minuty i sekundy.
+	\item Funkcja 'parametry':
+	Jej zmiennymi są wyniki funkcji 'czytaj'. Liczę tu: odległość, prędkość średnią, przeywższenie całkowite, sumę podejść i zejść, wysokość maksymalną i minimalną, czas trwania treningu, przewyższenia na każdym odcinku, prędkość na każdym odcinku, odległość skośną, najszybciej/najwolniej przebyty odcinek oraz najtrudniejszy/najłatwiejszy odcinek. Za pomocą instrukcji warunkowej if pomijam w obliczeniach czas postoju. Dodatkowo uwzględniam przypadki gdy listy el i dates są puste (czyli jak pisałam wyżej, brak danych na ten temat). W tym wypadku dla wyników powiązanych z tymi listami przypisałam 'brak'.
+
+\subsection{Plik 'mapview.kv'} 
+W tym pliku tworzyłam wygląd mojej aplikacji. Pierwszą rzeczą było napisanie nazwy klasy do której odnosi się dana część wyglądu. Następnie definiowałam orientację aplikacji. Części aplikacji umieściłam w odpowiednich boxlayoutach, które utworzyły wiersze aplikacji. Używałam także button (łączyłam je za pomocą polecenia 'on press: root' z odpowiednimi funkcjami z pliku main.py), label (za ich pomocą stworzyłam opisy w aplikacji) oraz TextInput (ustawiałami ich id aby móc potem wykorzystać je w aplikacji, zmieniałam wielkości czcionki, wysokość oraz zablokowałam możliwość edycji). W LoadDialog wykorzystałam także FileChooserIconView (ustwiłam jego path).
+
+\subsection{Plik 'main.py'}
+Jest to plik główny mojej aplikacji. To tutaj tworzyłam funkcje do przycisków oraz wywołuję aplikację. Na początku zaimportowałam odpowiednie biblioteki. Następnie stworzył klasy.
+
+\vspace{0.5cm}
+\textbf{Klasa TrackForm:}
+\begin{itemize}
+	
+	\item \textbf{Definicja init} 
+	\\Zmieniłam źródło mapy oraz zadefiniowałam miejsce na wykres.
+	
+	\item \textbf{Klasa rysuj wykres:}
+	\\Rysowanie wykresu przeywższenia od odległości i przewyższenia od czasu (jeśli są odpowiednie dane).
+	
+	\item \textbf{Open file:}
+	\\Czyszczenie TextInput, mapy oraz wykresów oraz wczytywanie wybranego pliku. 
+	
+	\item \textbf{Analyse file:}
+	\\Na początku sprawdzam czy został wczytany plik i czy ma dobre rozszerzenie. Jeśli nie, wyświetli się okienko z odpowiednią informacją. Następnie za pomocą funkcji z pliku 'gpxDef.py' odczytuję plik, liczę parametry dla niego oraz rysuję trasę na mapie. Następnie odpowiednie parametry przypisuję do opodwiednich TextInputów. Jeśli brakuje danych przypisuję informację o tym. \\Dodatkowo ustawiam zoom mapy oraz jest środek na miejsce odpowiadające trasie.
+	
+	\item \textbf{Draw rout:}
+	\\Rysowanie ścieżki na mapie (funkcja wywoływana w analyse file)
+	
+	\item \textbf{Draw marker:}
+	\\Rysowanie punktu na mapie (funkcja wywoływana w draw rout)
+	
+	\item \textbf{Load list, Dismiss Popup, Show Load:}
+	\\Defincje pozwalające na wybór pliku z dysku (wywoływane w analyse file)
+\end{itemize}
+
+\vspace{0.5cm}
+\textbf{Klasa Load Dialog:}
+\\Klasa dla wyglądu wybierania pliku z dysku.
+
+\vspace{0.5cm}
+\textbf{Klasa MapViewApp:}
+\\Połączeni z pliku kv z klasą TrackForm
+
+\vspace{0.5cm}
+Na końcu za pomocą polecenie run wywołuję aplikację.
+
+\section{Link do repozytorium}
+https://github.com/HannaLempicka/Projekt3.git
 
 \end{document}
